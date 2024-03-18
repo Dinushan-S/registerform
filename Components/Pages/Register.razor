@@ -1,0 +1,56 @@
+﻿@page "/register"
+@using System.ComponentModel.DataAnnotations
+
+<EditForm Model="@userModel" OnValidSubmit="HandleValidSubmit" FormName="registerForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-4">
+        <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username:</label>
+        <InputText id="username" name="username" @bind-Value="userModel.Username"
+            class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
+
+    <div class="mb-4">
+        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
+        <InputText id="email" name="email" @bind-Value="userModel.Email"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
+
+    <div class="mb-6">
+        <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
+        <InputText id="password" name="password" @bind-Value="userModel.Password" type="password"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
+
+    <div class="flex items-center justify-between">
+        <button type="submit"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
+    </div>
+</EditForm>
+<p role="status">Username: @name</p>
+<p role="status">Email: @email</p>
+
+
+@code {
+    public UserModel userModel = new UserModel();
+    private string? name;
+    private string? email;
+
+    private void HandleValidSubmit()
+    {
+        name = userModel.Username;
+        email = userModel.Email;
+        Console.WriteLine(userModel.Username);
+        Console.WriteLine(userModel.Email);
+    }
+
+
+    public class UserModel
+    {
+        public string? Username { get; set; }
+        [EmailAddress]
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+    }
+}
