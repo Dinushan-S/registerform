@@ -1,25 +1,27 @@
 ﻿@page "/register"
+@rendermode InteractiveServer
 @using System.ComponentModel.DataAnnotations
 
-<EditForm Model="@userModel" OnValidSubmit="HandleValidSubmit" FormName="registerForm">
+<EditForm Model="userModel" OnSubmit="HandleValidSubmit" FormName="registerForm">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
     <div class="mb-4">
         <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username:</label>
-        <InputText id="username" name="username" @bind-Value="userModel.Username"
-            class="form-control shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+        <InputText id="username" name="username" @bind-Value="userModel.Username" autocomplete="username"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
     </div>
 
     <div class="mb-4">
         <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email:</label>
-        <InputText id="email" name="email" @bind-Value="userModel.Email"
+        <InputText id="email" name="email" @bind-Value="userModel.Email" autocomplete="email"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
     </div>
 
     <div class="mb-6">
         <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password:</label>
         <InputText id="password" name="password" @bind-Value="userModel.Password" type="password"
+            autocomplete="password"
             class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
     </div>
 
@@ -39,6 +41,7 @@
 
     private void HandleValidSubmit()
     {
+        Console.WriteLine("OnValidSubmit");
         name = userModel.Username;
         email = userModel.Email;
         Console.WriteLine(userModel.Username);

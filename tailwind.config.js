@@ -1,10 +1,24 @@
 /** @type {import('tailwindcss').Config} */
+// module.exports = {
+//   content: ['./**/*.razor'],
+//   // purge: ['./**/*.razor'],
+//   theme: {
+//     extend: {},
+//   },
+//   plugins: [],
+// }
+
+
 module.exports = {
-  // content: ['./**/*.razor'],
-  purge: ['./**/*.razor'],
+  content: ['./**/*.{razor,html}'],
+  darkMode: 'class',
+
   theme: {
+
     extend: {},
   },
-  plugins: [],
-}
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 
+}
